@@ -3,11 +3,12 @@ const Employee = require("./lib/Employee")
 const Manager = require("./lib/Manager")
 const Intern = require("./lib/Intern")
 const Engineer = require("./lib/Engineer")
+const fs = require("fs")
 
 inquirer
   .prompt([ 
       {
-          name: ("Name"),
+          name: ("name"),
           type: ("input"),
           message: ("What is the name of the Employee?")
       },
@@ -28,9 +29,13 @@ inquirer
       }
 
   ])
-  .then(answers => {
-      console.log(answers.Name)
-      if 
+  .then(data => {
+      console.log(data.name)  
+      let employeeCard = fs.readFile("../10-team-profile-generator/templates/Employee.html", 'utf8', (err, data) => {
+          if (err) throw err;
+            console.log(data)
+      }
+      )
 
   });
 
