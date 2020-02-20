@@ -29,13 +29,21 @@ inquirer
       }
 
   ])
-  .then(data => {
-      console.log(data.name)  
+  .then(response => {
+      let empName = response.name;
+      let empId = response.id;
+      let empEmail = response.email;
+      let empTitle = response.title;
+
+      console.log(empName)
       let employeeCard = fs.readFile("../10-team-profile-generator/templates/Employee.html", 'utf8', (err, data) => {
           if (err) throw err;
-            console.log(data)
-      }
-      )
+        data = data.replace("{ name }", empName)  
+        data = data.replace("{ id }", empId)  
+        data = data.replace("{ title }", empTitle)  
+        data = data.replace("{ email }", empEmail)  
+        console.log(data)
+    })
 
   });
 
